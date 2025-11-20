@@ -1426,6 +1426,35 @@
         font-size: 11px;
       }
 
+      /* WORK IN PROGRESS BADGE */
+      .project-status {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 15px;
+      }
+
+      .wip-badge {
+        background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+        color: white;
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        animation: pulse-badge 2s infinite;
+      }
+
+      @keyframes pulse-badge {
+        0%, 100% {
+          box-shadow: 0 0 10px rgba(255, 107, 107, 0.4);
+        }
+        50% {
+          box-shadow: 0 0 20px rgba(255, 107, 107, 0.8);
+        }
+      }
+
       /* Print Styles */
       @media print {
         .bg-animation,
