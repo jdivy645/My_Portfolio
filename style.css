@@ -1,27 +1,31 @@
  :root {
-            --primary: #00d9ff;
-            --primary-dark: #00a6cc;
-            --secondary: #ff4d94;
-            --accent: #9d4edd;
+            --primary: #3b82c4;
+            --primary-dark: #2c6ba0;
+            --secondary: #c77a8a;
+            --accent: #7b61d9;
             --bg-dark: #0a0a0f;
             --bg-card: #15151e;
             --bg-light: #1e1e2e;
-            --text-primary: #ffffff;
-            --text-secondary: #b0b0c0;
+            --text-primary: #e9eef5;
+            --text-secondary: #98a0ad;
             --border-color: #2a2a3a;
-            --gradient-1: linear-gradient(135deg, #00d9ff 0%, #9d4edd 50%, #ff4d94 100%);
-            --gradient-2: linear-gradient(135deg, #9d4edd 0%, #ff4d94 100%);
-            --gradient-3: linear-gradient(135deg, #00d9ff 0%, #9d4edd 100%);
+            --gradient-1: linear-gradient(135deg, #3b82c4 0%, #7b61d9 60%, #c77a8a 100%);
+            --gradient-2: linear-gradient(135deg, #7b61d9 0%, #c77a8a 100%);
+            --gradient-3: linear-gradient(135deg, #3b82c4 0%, #7b61d9 100%);
             --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            --shadow-hover: 0 20px 50px rgba(0, 217, 255, 0.2);
-            --glow: 0 0 20px rgba(0, 217, 255, 0.3);
+            --shadow-hover: 0 20px 50px rgba(59, 130, 196, 0.12);
+            --glow: 0 0 20px rgba(59, 130, 196, 0.12);
         }
         
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+        }
+        
+        a {
+            text-decoration: none;
         }
         
         html {
@@ -66,8 +70,12 @@
         }
         
         section {
-            padding: 100px 0;
+            padding: 60px 0;
             position: relative;
+        }
+        
+        section#home {
+            padding: 120px 0 80px;
         }
         
         /* Floating Elements */
@@ -283,7 +291,8 @@
         
         /* Hero Section */
         .hero {
-            padding-top: 180px;
+            padding-top: 120px;
+            padding-bottom: 80px;
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -295,6 +304,54 @@
             grid-template-columns: 1fr 1fr;
             gap: 80px;
             align-items: center;
+        }
+        
+        .profile-image-container {
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 30px;
+            position: relative;
+        }
+        
+        .profile-image {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--border-color);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .profile-image-container::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border-radius: 50%;
+            background: var(--gradient-1);
+            z-index: 0;
+            opacity: 0;
+            transition: var(--transition);
+        }
+        
+        .profile-image-container:hover::before {
+            opacity: 0.6;
+            animation: pulse 2s infinite;
+        }
+        
+        .profile-image:hover {
+            transform: scale(1.05);
+            border-color: var(--primary);
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.6; }
+            50% { transform: scale(1.1); opacity: 0.3; }
         }
         
         .hero-text h1 {
@@ -371,23 +428,27 @@
         
         .hero-buttons {
             display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
+            gap: 12px;
+            flex-wrap: nowrap;
+            justify-content: center;
         }
         
         .btn {
             display: inline-flex;
             align-items: center;
-            gap: 12px;
-            padding: 16px 34px;
+            gap: 8px;
+            padding: 14px 20px;
             border-radius: 8px;
             font-weight: 600;
+            font-size: 0.9rem;
             transition: var(--transition);
             border: none;
             cursor: pointer;
             font-family: 'Inter', sans-serif;
             position: relative;
             overflow: hidden;
+            white-space: nowrap;
+            flex-shrink: 0;
         }
         
         .btn:before {
@@ -494,21 +555,21 @@
         }
         
         .code-keyword {
-            color: #ff4d94;
+            color: var(--secondary);
         }
-        
+
         .code-function {
-            color: #00d9ff;
+            color: var(--primary);
         }
-        
+
         .code-string {
-            color: #9d4edd;
+            color: var(--accent);
         }
         
         /* Section Titles */
         .section-title {
             text-align: center;
-            margin-bottom: 80px;
+            margin-bottom: 50px;
             position: relative;
         }
         
@@ -828,6 +889,7 @@
         /* Contact Section */
         .contact-section {
             text-align: center;
+            padding-bottom: 150px !important;
         }
         
         .contact-container {
@@ -909,57 +971,59 @@
         /* Footer */
         footer {
             background: var(--bg-card);
-            padding: 60px 0 30px;
+            padding: 40px 0 20px;
             border-top: 1px solid var(--border-color);
         }
         
         .footer-content {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 50px;
-            margin-bottom: 50px;
+            gap: 30px;
+            margin-bottom: 30px;
         }
         
         .footer-section h3 {
-            margin-bottom: 25px;
-            font-size: 1.5rem;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
         }
         
         .footer-about p {
             color: var(--text-secondary);
-            margin-bottom: 25px;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+            line-height: 1.6;
         }
         
         .contact-info {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 12px;
         }
         
         .contact-info-item {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
         }
         
         .contact-info-item i {
-            width: 45px;
-            height: 45px;
+            width: 38px;
+            height: 38px;
             border-radius: 50%;
             background: rgba(0, 217, 255, 0.1);
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--primary);
-            font-size: 1.2rem;
+            font-size: 1rem;
         }
         
         .copyright {
             text-align: center;
-            padding-top: 40px;
+            padding-top: 25px;
             border-top: 1px solid var(--border-color);
             color: var(--text-secondary);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
         
         /* Responsive Design */
@@ -1026,7 +1090,14 @@
             }
             
             .hero {
-                padding-top: 150px;
+                padding-top: 120px;
+                padding-bottom: 60px;
+            }
+            
+            .profile-image-container {
+                width: 150px;
+                height: 150px;
+                margin-bottom: 25px;
             }
             
             .hero-text h1 {
@@ -1077,6 +1148,12 @@
         }
         
         @media (max-width: 576px) {
+            .profile-image-container {
+                width: 120px;
+                height: 120px;
+                margin-bottom: 20px;
+            }
+            
             .hero-text h1 {
                 font-size: 2.2rem;
             }
